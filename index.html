@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="description" content="42题健康信息采集问卷，无需登录，答卷仅在当前浏览器处理，可自行复制或下载。">
+  <meta name="theme-color" content="#eaf5ff">
+  <title>24岁男性食欲不佳及体重偏低综合评估问卷</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="questions.js" defer></script>
+  <script src="core.js" defer></script>
+  <script src="records.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar"><div><span class="brand-mark" aria-hidden="true">＋</span><span>健康信息采集</span><span class="local-badge">仅本地处理</span></div></header>
+  <main id="main">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="eyebrow">42 道题 · 7 个模块 · 无需登录</div>
+      <h1 id="page-title">24岁男性食欲不佳及体重偏低综合评估问卷</h1>
+      <p class="subtitle">中西医结合健康信息采集与初步评估</p>
+      <p>本问卷用于了解长期食欲不佳、体重偏低及相关胃肠道症状，帮助后续进行健康情况分析和调理建议。问卷不替代医生诊断。</p>
+      <div class="privacy"><strong>请放心填写，也请保护隐私</strong><p>答案仅在当前设备浏览器中处理，不上传服务器。无需填写姓名、手机号、身份证或详细住址。点击“保存到本机”后可再次打开查看或继续填写；未保存的内容刷新后会丢失。</p></div>
+      <p class="small">请根据最近3个月的情况填写；题目另有时间范围时以题目为准。仅第1～4题必填，其余可跳过；不确定时可选择已有的“不清楚”选项或留空。</p>
+    </section>
+    <details id="saved-records" class="auxiliary">
+      <summary id="records-heading">本机填写记录</summary>
+      <p>记录仅保存在这台设备的当前浏览器中，不会同步给问卷发起者或其他设备。共用设备上的其他使用者可能看到记录，请谨慎保存。清理微信/浏览器数据、使用无痕模式或更换浏览器可能导致记录丢失，重要答卷请另存TXT。</p>
+      <p id="records-status" role="status" aria-live="polite"></p>
+      <div id="records-list"></div>
+    </details>
+    <noscript><div class="notice">请启用浏览器 JavaScript 后填写。本页不会上传答案。</div></noscript>
+    <div id="fatal" class="notice" hidden>页面未能完整加载，请检查网络后重新打开。</div>
+    <section id="form-view" hidden>
+      <div class="progress-panel"><div class="progress-label"><strong id="progress-text">已完成 0/42 题</strong><span id="section-count">模块 1/7</span></div><progress id="progress" max="42" value="0" aria-label="问卷完成进度"></progress></div>
+      <nav id="section-nav" aria-label="问卷模块"></nav>
+      <form id="questionnaire" novalidate autocomplete="off">
+        <div id="error-summary" class="notice" role="alert" tabindex="-1" hidden></div>
+        <div id="sections"></div>
+        <div class="navigation"><button type="button" id="previous" class="secondary">上一模块</button><button type="button" id="next">下一模块</button><button type="submit" id="submit" hidden>提交并生成答卷</button></div>
+        <button type="button" id="save-draft" class="secondary">保存当前填写记录到本机</button>
+        <p id="save-draft-status" role="status" aria-live="polite"></p>
+        <p class="small centered">提交仅生成本地答卷；不会发送给任何人。</p>
+      </form>
+    </section>
+    <section id="result-view" hidden aria-labelledby="result-title">
+      <div class="result-heading"><span class="eyebrow">本地答卷已生成</span><h2 id="result-title" tabindex="-1">感谢填写</h2><p>请先检查答卷，再自行决定复制、下载或分享。</p></div>
+      <div id="result-metrics" class="metrics"></div>
+      <div id="result-warning" class="notice" hidden></div>
+      <div class="result-actions"><button type="button" id="copy">一键复制答卷</button><button type="button" id="download" class="secondary">下载答卷 TXT</button><button type="button" id="save-result" class="secondary">保存答卷到本机</button><button type="button" id="edit" class="secondary">返回修改</button><button type="button" id="restart" class="secondary">重新填写</button></div>
+      <p id="action-status" role="status" aria-live="polite"></p>
+      <p class="small">微信内如无法复制，请长按下方答卷全选复制。如下载被拦截，可在右上角菜单选择“在浏览器打开”，但答案不会随链接转移，请先复制本页答卷。</p>
+      <label for="report" class="report-label">完整答卷（可长按选择）</label><textarea id="report" readonly spellcheck="false" aria-label="完整答卷"></textarea>
+    </section>
+    <footer><p>不提供自动诊断或药物处方。中医相关题目仅采集表现，不自动判断证型。</p><details><summary>隐私说明与参考依据</summary><p>本站无账号、Cookie、广告或分析脚本。只有点击保存才会把记录存入本机浏览器；本机记录不加密，可在“本机填写记录”中删除。托管平台可能记录网页访问的基础日志（如IP和访问路径），但答案不会进入请求、链接或日志。复制后内容进入系统剪贴板，下载后保存在设备；主动发送到微信或其他平台则由你决定。</p><p>成人BMI采用中国成人参考标准；半年非自主性体重下降超过5%或5 kg为关注参考，不是诊断阈值。</p><ul><li><a href="https://www.nhc.gov.cn/wjw/yingyang/201308/a233d450fdbc47c5ad4f08b7e394d1e8.shtml" target="_blank" rel="noopener noreferrer">国家卫生健康委：成人体重判定</a></li><li><a href="https://www.msdmanuals.com/professional/special-subjects/nonspecific-symptoms/involuntary-weight-loss" target="_blank" rel="noopener noreferrer">MSD Manual：非自主性体重下降</a></li><li><a href="https://www.nhs.uk/symptoms/bleeding-from-the-bottom-rectal-bleeding/" target="_blank" rel="noopener noreferrer">NHS：便血就医信息</a></li></ul></details></footer>
+  </main>
+</body>
+</html>
+
